@@ -5,18 +5,33 @@ import { TEXT_CONTENT } from '../constants';
 interface Props {
   lang: Language;
   variant?: 'hero' | 'section';
+  onSubmitLead?: (data: { name: string; phone: string; interest: string }) => void;
 }
 
-const LeadForm: React.FC<Props> = ({ lang, variant = 'hero' }) => {
+const LeadForm: React.FC<Props> = ({ lang, variant = 'hero', onSubmitLead }) => {
   const t = TEXT_CONTENT.form;
   const [submitted, setSubmitted] = useState(false);
+  
+  // Form State
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [interest, setInterest] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate API call
+    
+    // Simulate API call & Callback
     setTimeout(() => {
+      if (onSubmitLead) {
+        onSubmitLead({ name, phone, interest: interest || 'General Inquiry' });
+      }
       setSubmitted(true);
-      // Reset after 3 seconds
+      // Reset form
+      setName('');
+      setPhone('');
+      setInterest('');
+      
+      // Reset success message after 5 seconds
       setTimeout(() => setSubmitted(false), 5000);
     }, 800);
   };
@@ -31,7 +46,7 @@ const LeadForm: React.FC<Props> = ({ lang, variant = 'hero' }) => {
     `}>
       {variant === 'hero' && (
         <h3 className={`text-xl font-bold mb-4 text-white ${lang === 'ar' ? 'text-right' : 'text-left'}`}>
-          {lang === 'en' ? 'Get Exclusive Access' : 'احصل على وصول حصري'}
+          {lang === 'en' ? 'Start Your Project' : 'ابدأ مشروعك معنا'}
         </h3>
       )}
 
@@ -48,6 +63,8 @@ const LeadForm: React.FC<Props> = ({ lang, variant = 'hero' }) => {
               placeholder={t.namePlaceholder[lang]} 
               required 
               className={inputClasses}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div>
@@ -57,16 +74,23 @@ const LeadForm: React.FC<Props> = ({ lang, variant = 'hero' }) => {
               placeholder={t.phonePlaceholder[lang]} 
               required 
               className={inputClasses}
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
             />
           </div>
           <div>
             <label className={variant === 'hero' ? 'sr-only' : labelClasses}>{t.interestPlaceholder[lang]}</label>
-            <select className={inputClasses}>
-              <option value="" disabled selected>{t.interestPlaceholder[lang]}</option>
-              <option value="apartment">{lang === 'en' ? 'Apartment' : 'شقة'}</option>
-              <option value="villa">{lang === 'en' ? 'Villa' : 'فيلا'}</option>
-              <option value="land">{lang === 'en' ? 'Land' : 'أرض'}</option>
-              <option value="commercial">{lang === 'en' ? 'Commercial' : 'تجاري'}</option>
+            <select 
+              className={inputClasses}
+              value={interest}
+              onChange={(e) => setInterest(e.target.value)}
+            >
+              <option value="" disabled>{t.interestPlaceholder[lang]}</option>
+              <option value="Residential Construction">{lang === 'en' ? 'Residential Construction' : 'إنشاءات سكنية'}</option>
+              <option value="Commercial Complex">{lang === 'en' ? 'Commercial Complex' : 'مجمع تجاري'}</option>
+              <option value="Infrastructure">{lang === 'en' ? 'Infrastructure' : 'بنية تحتية'}</option>
+              <option value="Finishing & Fit-out">{lang === 'en' ? 'تشطيبات وديكور' : 'تشطيبات وديكور'}</option>
+              <option value="Renovation">{lang === 'en' ? 'Renovation' : 'ترميم وصيانة'}</option>
             </select>
           </div>
           <button 

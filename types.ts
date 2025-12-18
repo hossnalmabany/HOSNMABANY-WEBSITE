@@ -1,13 +1,13 @@
 export type Language = 'en' | 'ar';
 
-export interface Property {
+export interface Project {
   id: string;
   image: string;
-  price: {
+  title: {
     en: string;
     ar: string;
   };
-  location: {
+  category: {
     en: string;
     ar: string;
   };
@@ -15,9 +15,19 @@ export interface Property {
     en: string;
     ar: string;
   };
-  beds: number;
-  baths: number;
-  sqft: number;
+  status: {
+    en: string;
+    ar: string;
+  };
+  year: string;
+}
+
+export interface Lead {
+  id: string;
+  name: string;
+  phone: string;
+  interest: string;
+  timestamp: number;
 }
 
 export interface Content {
@@ -33,7 +43,7 @@ export interface Content {
     submit: { en: string; ar: string };
     success: { en: string; ar: string };
   };
-  urgent: {
+  urgent: { // Repurposed as Services
     items: Array<{ title: { en: string; ar: string }; desc: { en: string; ar: string } }>;
   };
   benefits: {
@@ -42,7 +52,7 @@ export interface Content {
   };
   stats: {
     clients: { label: { en: string; ar: string }; value: string };
-    sold: { label: { en: string; ar: string }; value: string };
+    sold: { label: { en: string; ar: string }; value: string }; // Repurposed as Projects Completed
     experience: { label: { en: string; ar: string }; value: string };
   };
   gallery: {
