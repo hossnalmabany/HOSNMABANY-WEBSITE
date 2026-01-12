@@ -56,7 +56,10 @@ export const TEXT_CONTENT: Content = {
     title: { en: "Our Portfolio", ar: "معرض أعمالنا" }
   },
   footer: {
-    copyright: { en: "© 2024 Hosn Mabany Contracting. All rights reserved.", ar: "© 2024 شركة حصن مباني للمقاولات. جميع الحقوق محفوظة." }
+    copyright: { 
+      en: "© 2024 HOSNMABANY-WEBSITE. All rights reserved.", 
+      ar: "© 2024 HOSNMABANY-WEBSITE. جميع الحقوق محفوظة." 
+    }
   }
 };
 

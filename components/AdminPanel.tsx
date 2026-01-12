@@ -3,7 +3,7 @@ import { Project, Lead, Language } from '../types';
 import { 
   LayoutDashboard, 
   Users, 
-  HardHat, // Changed Icon
+  HardHat, 
   LogOut, 
   Plus, 
   Trash2, 
@@ -33,7 +33,7 @@ const ADMIN_TEXT = {
     error: { en: "Invalid credentials (try: admin / admin)", ar: "بيانات الدخول غير صحيحة (جرب: admin / admin)" }
   },
   sidebar: {
-    title: { en: "Hosn Admin", ar: "إدارة حصن مباني" },
+    title: { en: "HOSNMABANY Admin", ar: "إدارة HOSNMABANY" },
     projects: { en: "Projects", ar: "المشاريع" },
     leads: { en: "Inquiries", ar: "الطلبات" },
     exit: { en: "Exit Dashboard", ar: "خروج من اللوحة" }
